@@ -12,7 +12,7 @@ defmodule InverseAuth.Plug do
 
     result =
       with {:ok, token}      <- Map.fetch(conn.params, param),
-           {:ok, {_, user}}  <- JWT.verify(token),
+           {:ok, {_, user}}  <- InverseAuth.JWT.verify(token),
            conn              <- assign(conn, :user, user),
            {:ok, conn}       <- auth.authenticate(conn),
       do:  {:ok, conn}
