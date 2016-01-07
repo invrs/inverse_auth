@@ -1,0 +1,4 @@
+%{"base64url": {:hex, :base64url, "0.0.1"},
+  "joken": {:hex, :joken, "1.0.0"},
+  "jose": {:hex, :jose, "1.4.2"},
+  "plug": {:hex, :plug, "1.0.3"}}
