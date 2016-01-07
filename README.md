@@ -1,20 +1,31 @@
-# PlugAuth
+# InverseAuth
 
-**TODO: Add description**
+The Inverse auth libraries for the Elixir Projects.
 
-## Installation
+## Modules
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+### InverseAuth.Auth
 
-  1. Add plug_auth to your list of dependencies in `mix.exs`:
+A template for auth models that are project specific.
 
-        def deps do
-          [{:plug_auth, "~> 0.0.1"}]
-        end
+### InverseAuth.JWT
 
-  2. Ensure plug_auth is started before your application:
+A module to decode JWT tokens.
 
-        def application do
-          [applications: [:plug_auth]]
-        end
+### InverseAuth.Plug
 
+A plug to be used to decode JWT tokens and assign them to `conn.assigns.user`.
+
+## Usage
+
+Add this to your `mix.exs`:
+
+```Elixir
+  def deps do
+    [
+      #...
+      {:inverse_auth, github: "invrs/inverse_auth"},
+      #...
+    }
+  end
+```

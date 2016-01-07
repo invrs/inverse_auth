@@ -10,7 +10,7 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :plug_auth, key: :value
+config :inverse_auth, jwt_secret: Application.get_env("JWT_SECRET")
 #
 # And access this configuration in your application as:
 #

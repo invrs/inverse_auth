@@ -1,0 +1,3 @@
+defmodule InverseAuth do
+
+end

@@ -1,11 +1,11 @@
-defmodule JWT do
+defmodule InverseAuth.JWT do
   import Joken, except: [verify: 1]
 
-  @jwt_secret Application.get_env(:plug_auth, :jwt_secret)
+  @jwt_secret Application.get_env(:inverse_auth, :jwt_secret)
 
-  def verify(candidate) do
+  def verify(token) do
     joken =
-      candidate
+      token
       |> token
       |> with_signer(hs512(@jwt_secret))
       |> Joken.verify

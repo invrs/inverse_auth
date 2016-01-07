@@ -1,4 +1,4 @@
-defmodule PlugAuth.Auth do
+defmodule InverseAuth.Auth do
   use Behaviour
 
   @type reason :: atom | binary

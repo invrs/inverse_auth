@@ -1,4 +1,4 @@
-defmodule PlugAuth do
+defmodule InverseAuth.Plug do
   import Plug.Conn
 
   @behaviour Plug
