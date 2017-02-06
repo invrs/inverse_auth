@@ -28,8 +28,8 @@ defmodule InverseAuth.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:joken, "~> 1.0.0"},
-      {:plug,  "~> 1.0"}
+      {:joken, "~> 1.4"},
+      {:plug,  "~> 1.3"}
     ]
   end
 end
