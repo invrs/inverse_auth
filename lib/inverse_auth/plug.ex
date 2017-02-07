@@ -24,12 +24,12 @@ defmodule InverseAuth.Plug do
       :error ->
         conn
         |> send_resp(:unauthorized, "")
-        |> halt
+        |> halt()
 
       {:error, reason} ->
         conn
         |> send_resp(:unauthorized, to_string(reason))
-        |> halt
+        |> halt()
     end
   end
   def call(conn, _config), do: conn
