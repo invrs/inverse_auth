@@ -5,7 +5,7 @@ defmodule InverseAuth.JWT do
     joken =
       token
       |> Joken.token()
-      |> Joken.with_signer(hs512(jwt_secret))
+      |> Joken.with_signer(Joken.hs512(jwt_secret))
       |> Joken.verify()
 
     case joken.error do
