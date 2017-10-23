@@ -1,4 +1,4 @@
-defmodule InverseAuth.JWT do
+defmodule InverseAuth.Method.JWT do
   def verify(token) do
     jwt_secret = Application.get_env(:inverse_auth, :jwt_secret)
 
