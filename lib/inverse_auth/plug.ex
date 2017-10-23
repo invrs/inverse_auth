@@ -7,12 +7,13 @@ defmodule InverseAuth.Plug do
   def init(opts), do: opts
 
   def call(conn = %{method: method}, config) when method in @methods do
-    param = Keyword.fetch! config, :param
-    auth  = Keyword.fetch! config, :auth
+    param  = Keyword.fetch! config, :param
+    auth   = Keyword.fetch! config, :auth
+    method = Keyword.get    config, :method, InverseAuth.Method.JWT
 
     result =
       with {:ok, token}      <- Map.fetch(conn.params, param),
-           {:ok, {_, user}}  <- InverseAuth.JWT.verify(token),
+           {:ok, {_, user}}  <- method.verify(token),
            conn              <- assign(conn, :user, user),
            {:ok, conn}       <- auth.authenticate(conn),
       do:  {:ok, conn}

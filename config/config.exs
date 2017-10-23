@@ -28,3 +28,7 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+config :inverse_auth, InverseAuth.Method.Slack,
+  identity_endpoint: "/api/users.identity",
+  slack_endpoint: "https://slack.com",
+  team_id: "T038YDY35"
