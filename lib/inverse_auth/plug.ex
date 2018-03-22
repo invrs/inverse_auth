@@ -10,6 +10,8 @@ defmodule InverseAuth.Plug do
     param = Keyword.fetch! config, :param
     auth  = Keyword.fetch! config, :auth
 
+    IO.inspect conn
+
     IO.puts "CHECKING AUTH PARAM #{inspect param} WITH AUTH #{inspect auth}"
     result =
       with {:ok, token}      <- Map.fetch(conn.params, param) |> IO.inspect(),
