@@ -10,11 +10,12 @@ defmodule InverseAuth.Plug do
     param = Keyword.fetch! config, :param
     auth  = Keyword.fetch! config, :auth
 
+    IO.puts "CHECKING AUTH PARAM #{inspect param} WITH AUTH #{inspect auth}"
     result =
-      with {:ok, token}      <- Map.fetch(conn.params, param),
-           {:ok, {_, user}}  <- InverseAuth.JWT.verify(token),
+      with {:ok, token}      <- Map.fetch(conn.params, param) |> IO.inspect(),
+           {:ok, {_, user}}  <- InverseAuth.JWT.verify(token) |> IO.inspect(),
            conn              <- assign(conn, :user, user),
-           {:ok, conn}       <- auth.authenticate(conn),
+           {:ok, conn}       <- auth.authenticate(conn) |> IO.inspect(),
       do:  {:ok, conn}
 
     case result do
