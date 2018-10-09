@@ -11,7 +11,7 @@ defmodule InverseAuth.Plug do
     auth  = Keyword.fetch! config, :auth
 
     result =
-      with {:ok, token}      <- Map.fetch(conn.params, param),
+      with {:ok, token}      <- fetch_token(conn, param),
            {:ok, {_, user}}  <- InverseAuth.JWT.verify(token),
            conn              <- assign(conn, :user, user),
            {:ok, conn}       <- auth.authenticate(conn),
@@ -33,4 +33,16 @@ defmodule InverseAuth.Plug do
     end
   end
   def call(conn, _config), do: conn
+
+  defp fetch_token(conn, param) do
+    if (token = Map.get(conn.params, param) || fetch_from_cookies(conn, param)),
+      do: {:ok, token}, else: :error
+  end
+
+  defp fetch_from_cookies(conn, param) do
+    case conn |> fetch_cookies do
+      %{cookies: %{^param => token}} -> token
+      _                              -> nil
+    end
+  end
 end

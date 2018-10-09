@@ -29,7 +29,8 @@ defmodule InverseAuth.Mixfile do
   defp deps do
     [
       {:joken, "~> 1.4"},
-      {:plug,  "~> 1.3"}
+      {:plug,  "~> 1.3"},
+      {:poison, "~> 3.1"}
     ]
   end
 end
