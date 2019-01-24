@@ -16,6 +16,18 @@ defmodule InverseAuthTest do
     assert conn.halted
   end
 
+  test "401s requests with invalid authorization parameters" do
+    opts = InverseAuth.Plug.init([auth: TestAuth, param: @param])
+    conn =
+      :post
+      |> conn("/")
+      |> put_req_cookie(@param, "blah")
+      |> InverseAuth.Plug.call(opts)
+
+    assert conn.status == 401
+    assert conn.halted
+  end
+
   test "supports cookie-based auth" do
     Application.put_env(:inverse_auth, :jwt_secret, "fssecret")
     opts = InverseAuth.Plug.init([auth: TestAuth, param: @param])

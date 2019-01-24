@@ -14,10 +14,10 @@ defmodule InverseAuth.Plug do
       auth  = Keyword.fetch! config, :auth
 
       result =
-        with {:ok, token}      <- fetch_token(conn, param),
-             {:ok, {_, user}}  <- InverseAuth.JWT.verify(token),
-             conn              <- assign(conn, :user, user),
-             {:ok, conn}       <- auth.authenticate(conn),
+        with {:ok, token} <- fetch_token(conn, param),
+             {:ok, user}  <- InverseAuth.JWT.verify(token),
+             conn         <- assign(conn, :user, user),
+             {:ok, conn}  <- auth.authenticate(conn),
         do:  {:ok, conn}
 
       case result do
